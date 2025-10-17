@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuário - CodeGO</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="login-container">
+        <img src="{{ url_for('static', filename='logo codego.png') }}" alt="Logo CodeGO" class="logo">
+        <h2>CADASTRO DE USUÁRIO</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for categoria, msg in messages %}
+              <p class="{{ categoria }}">{{ msg }}</p>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="login">Login:</label>
+            <input type="text" id="login" name="login" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required>
+
+            <label for="departamento">Departamento:</label>
+            <select id="departamento" name="departamento" required>
+                <option value="">Selecione...</option>
+                <option value="Diretoria">Diretoria</option>
+                <option value="Financeiro">Financeiro</option>
+                <option value="Recursos Humanos">Recursos Humanos</option>
+                <option value="TI">Tecnologia da Informação</option>
+                <option value="Infraestrutura">Infraestrutura</option>
+                <option value="Comercial">Comercial</option>
+                <option value="Planejamento">Planejamento</option>
+            </select>
+
+            <button type="submit">SALVAR</button>
+            <button type="reset">LIMPAR</button>
+        </form>
+
+        <div class="links">
+            <a href="{{ url_for('login') }}">Voltar ao login</a>
+        </div>
+    </div>
+</body>
+</html>
